@@ -1,0 +1,22 @@
+CBX) Visual clarity — missing H1in hero EE
+The hero section does not contain an. <i> tag The visible headiine “Purpose-Driven Digital Growth Solutions
+for Clinics, Labs & Healthcare Brands" is wrappedtin an <n» , and the eyebrow copy "Al-Powered Healthcare
+Growth" appears to be a plain paragraph or span — not a heading tag; The finding that thereis no Hin the hero
+is accurate. However the claim that “vistors can't immediately Understand the core offering” overstates the.
+impact, since the h3 headline is stil clearly visible. The recommendation (add an Hi with the value proposition)
+is valid and correct.
+
+@EEED Conversion optimisation — form field count [ inaccurate ciaim J
+The report claims the contact form has 87 fields — this is incorrect. The main "Book an Appointment” form on
+the homepage has 5 visible fields: Name, Phone, Email, Service (dropdown), Date, and Time. That's 6 at most —
+already close to the recommended range. The page does contain multiple other popup/modal forms (for case
+‘studies, career applications, etc.), and a career application form in a modal With roughly 12-14 fields. But no
+single contact form has anywhere near 87 fields. The underlying recommendation to keep forms concise s still
+good advice in general, but the specific claimis factually wrong and not verifiable from the page source.
+Q@EEED Mobile experience — usability issues [ rarialy accuraco J
+The pages built on WordPress with Slider Revolution —a plugin historically associated with mobile rendering
+issues. The page source confirms it uses standard WordPress Elementor markup without explicit mobile-
+optimised tap targets or overflow fixes. However, the specific claim of ‘significant usabity issues” cannot be
+full confirmed or denied from HTML source alone — it requires areal mobi render or Lighthouse mobile
+audit. The recommendations prudent and fel valid, but shold be labelled as suspected” rather than
+confirmed finding.

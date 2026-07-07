@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZealousWeb — UX Audit Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f6f7;
+        color: #122932;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #ffffff;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 8px 40px rgba(18, 41, 50, 0.15);
+        border: 1px solid #eef2f4;
+      }
+      .header {
+        padding: 30px 40px;
+        background: #ffffff;
+        border-bottom: 1px solid #eef2f4;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, #f79433, #f05870);
+        border-radius: 8px;
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .logo-text {
+        font-size: 18px;
+        font-weight: 700;
+        color: #122932;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .logo-text span {
+        color: #56b8c8;
+      }
+      .hero {
+        background: #122932;
+        padding: 40px 30px;
+        color: white;
+        text-align: center;
+      }
+      .score-ring-wrap {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 15px;
+      }
+      .ring-inner {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 90px;
+        height: 90px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        text-align: center;
+      }
+      .score-num {
+        padding-top: 21px;
+        color: #ffffff;
+        font-size: 32px;
+        font-weight: 800;
+        line-height: 1;
+      }
+      .score-grade {
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+        opacity: 0.8;
+        margin-top: 2px;
+      }
+      .hero-title {
+        font-size: 24px;
+        font-weight: 800;
+        margin: 0 0 10px;
+        letter-spacing: -0.5px;
+      }
+      .hero-subtitle {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 0;
+        line-height: 1.6;
+      }
+      .url-pill {
+        display: inline-block;
+        background: rgba(255, 255, 255, 1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-family: monospace;
+        font-size: 12px;
+        color: #56b8c8;
+        margin-top: 15px;
+      }
+      .section {
+        padding: 30px 40px;
+        border-bottom: 1px solid #eef2f4;
+      }
+      .section-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: #939698;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+      }
+      .breakdown-row {
+        margin-bottom: 15px;
+      }
+      .breakdown-meta {
+        font-size: 13px;
+        margin-bottom: 6px;
+        overflow: hidden;
+      }
+      .breakdown-label {
+        float: left;
+        color: #494943;
+        font-weight: 500;
+      }
+      .breakdown-score {
+        float: right;
+        font-weight: 700;
+      }
+      .bar-track {
+        height: 8px;
+        background: #eef2f4;
+        border-radius: 100px;
+        clear: both;
+      }
+      .bar-fill {
+        height: 100%;
+        border-radius: 100px;
+      }
+      .metrics-grid {
+        display: table;
+        width: 100%;
+        border-spacing: 10px;
+        margin: 0 -10px;
+      }
+      .metric-card {
+        display: table-cell;
+        background: #f8fafb;
+        border: 1px solid #eef2f4;
+        border-radius: 12px;
+        padding: 15px;
+        text-align: center;
+        width: 33.33%;
+      }
+      .metric-label {
+        font-size: 10px;
+        color: #939698;
+        margin-bottom: 5px;
+      }
+      .metric-value {
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .issue-card {
+        padding: 12px 16px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+        position: relative;
+      }
+      .issue-crit {
+        background: #fceaed;
+        color: #d41638;
+      }
+      .issue-win {
+        background: #e4f8e9;
+        color: #1ba43a;
+      }
+      .issue-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+      }
+      .rec-card {
+        background: #ffffff;
+        border: 1px solid #eef2f4;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .rec-header {
+        margin-bottom: 12px;
+      }
+      .cat-tag {
+        background: #e0f2fe;
+        color: #0369a1;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 4px 8px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        margin-right: 8px;
+      }
+      .impact-badge {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 4px 8px;
+        border-radius: 6px;
+        text-transform: uppercase;
+      }
+      .low {
+        background: #f0f9ff;
+        color: #0ea5e9;
+      }
+      .medium {
+        background: #fffbeb;
+        color: #d97706;
+      }
+      .high {
+        background: #fff1f2;
+        color: #e11d48;
+      }
+      .rec-title {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0 0 8px;
+        color: #122932;
+      }
+      .rec-desc {
+        font-size: 13px;
+        color: #494943;
+        line-height: 1.5;
+        margin-bottom: 12px;
+      }
+      .rec-tip {
+        background: #fdfaf4;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 12px;
+        color: #92400e;
+        line-height: 1.4;
+        font-style: italic;
+      }
+      .footer {
+        padding: 30px 40px;
+        background: #fafcfd;
+        text-align: center;
+        font-size: 12px;
+        color: #939698;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero">
+        <div class="score-ring-wrap">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8" />
+            <circle
+              cx="60"
+              cy="60"
+              r="54"
+              fill="none"
+              stroke="{{scoreColor}}"
+              stroke-width="8"
+              stroke-dasharray="339.29"
+              stroke-dashoffset="{{ringOffset}}"
+              stroke-linecap="round"
+            />
+          </svg>
+          <div class="ring-inner">
+  <div class="score-num">{{score}}</div>
+  <div class="score-grade">{{grade}}</div>
+</div>
+        </div>
+        <h1 class="hero-title">{{label}} Score</h1>
+        <p class="hero-subtitle">{{message}}</p>
+        <div class="url-pill">{{url}}</div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Score Breakdown</div>
+        {{breakdownRows}}
+      </div>
+
+      <div class="section">
+        <div class="section-label">Key Metrics</div>
+        {{metricsGrid}}
+      </div>
+
+      <div class="section">
+        <div class="section-label">Issues & Quick Wins</div>
+        {{quickWins}}
+      </div>
+
+      <div class="section" style="border-bottom: none">
+        <div class="section-label">Prioritized Recommendations</div>
+        {{recommendationsGrid}}
+      </div>
+
+      <div class="footer">
+        {{criticalIssueCount}} critical issue(s) identified · Generated by ZealousWeb UX Auditor · {{timestamp}}
+      </div>
+    </div>
+  </body>
+</html>

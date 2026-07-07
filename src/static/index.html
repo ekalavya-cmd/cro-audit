@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        connect-src 'self' ws: wss: http: https:;
+        img-src 'self' data: https://d2dzxx87q66vi8.cloudfront.net;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        script-src 'self' 'unsafe-inline';
+      " />
+  <title>ZealousWeb — UX Audit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./index.css" />
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+  <div class="modal-accent"></div>
+
+  <div class="modal-header">
+    <div class="modal-header-text">
+      <h2 id="mTitle">Let's audit your website</h2>
+      <p id="mSub">Enter your details to get started</p>
+    </div>
+  </div>
+
+  <!-- stepper -->
+  <div class="stepper">
+    <div class="step-dot active" id="d1">1</div>
+    <div class="step-line" id="l1"></div>
+    <div class="step-dot" id="d2">2</div>
+    <div class="step-line" id="l2"></div>
+    <div class="step-dot" id="d3">3</div>
+    <div class="step-line" id="l3"></div>
+    <div class="step-dot" id="d4">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <path d="M20 6L9 17l-5-5" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="modal-body">
+    <!-- ── STEP 1 ── -->
+    <div class="step-view active" id="s1">
+      <div class="form-group">
+        <label>Website URL</label>
+        <div class="input-wrap">
+          <svg class="i-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path
+              d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+          </svg>
+          <input type="url" id="urlIn" placeholder="https://yourwebsite.com" />
+        </div>
+        <p style="
+                  font-size: 11.5px;
+                  color: var(--mist);
+                  margin-top: 0.75rem;
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                ">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          Make sure your URL starts with https:// (example: https://yourwebsite.com).
+        </p>
+        <div class="url-note" style="margin-top: 7px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4M12 16h.01" />
+          </svg>
+          <p>
+            Only the specific page URL you paste here will be audited — not your entire
+            website. For a full-site audit, <strong>contact our team</strong>.
+          </p>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top: 1rem">
+        <label>Your Email Address</label>
+        <div class="input-wrap">
+          <svg class="i-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <input type="email" id="emailIn" placeholder="you@company.com" />
+        </div>
+      </div>
+      <p style="
+                font-size: 11.5px;
+                color: var(--mist);
+                margin-top: 0.75rem;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+              ">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+        We never share your data. Report delivered to your inbox only.
+      </p>
+    </div>
+
+    <!-- ── STEP 2 ── -->
+    <div class="step-view" id="s2">
+      <div class="audit-cards" id="auditCards">
+        <div class="audit-card" data-type="seo">
+          <div class="audit-icon seo">📈</div>
+          <div class="audit-text">
+            <h4>SEO Audit</h4>
+            <p>
+              Meta tags, heading structure, keyword signals, crawlability, and search
+              visibility scoring.
+            </p>
+          </div>
+          <div class="check-ring" id="ck-seo">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+          </div>
+        </div>
+        <div class="audit-card" data-type="uxui">
+          <div class="audit-icon ux">🎨</div>
+          <div class="audit-text">
+            <h4>UX / UI Audit</h4>
+            <p>
+              Visual clarity, mobile responsiveness, WCAG accessibility, navigation, and
+              conversion heuristics.
+            </p>
+          </div>
+          <div class="check-ring" id="ck-ux">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+          </div>
+        </div>
+        <div class="audit-card" data-type="full">
+          <div class="audit-icon full">⚡</div>
+          <div class="audit-text">
+            <h4>Full Audit <span class="rec-badge">Recommended</span></h4>
+            <p>
+              Everything — SEO, UX/UI, performance, accessibility, and trust signals in one
+              unified score.
+            </p>
+          </div>
+          <div class="check-ring" id="ck-full">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="notify-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal-blue)" stroke-width="2">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+        </svg>
+        <p>
+          <strong>Email me when ready</strong><br />We'll notify you the moment your report
+          lands.
+        </p>
+        <label class="toggle">
+          <input type="checkbox" id="notifyTog" checked />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <a class="advisor-link" id="advisorLink" target="_blank" href="#" data-contact="">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+        Not sure which to choose? Talk to one of our advisors
+      </a>
+    </div>
+
+    <!-- ── STEP 3 ── -->
+    <div class="step-view" id="s3">
+      <div class="progress-intro">
+        <h3 id="progressTitle">Scanning your website…</h3>
+        <p id="progressSub">Grab a coffee ☕ — this takes about 60–90 seconds</p>
+      </div>
+
+      <div class="scanner-box">
+        <div class="scan-sweep"></div>
+        <div class="scan-items">
+          <div class="scan-row">
+            <div class="scan-icon">🚀</div>
+            <div class="scan-label">Performance & Core Web Vitals</div>
+            <span class="scan-status s-wait" id="p1">Queued</span>
+          </div>
+          <div class="scan-row">
+            <div class="scan-icon">♿</div>
+            <div class="scan-label">Accessibility (WCAG 2.1)</div>
+            <span class="scan-status s-wait" id="p2">Queued</span>
+          </div>
+          <div class="scan-row">
+            <div class="scan-icon">🔗</div>
+            <div class="scan-label">Navigation & Link Structure</div>
+            <span class="scan-status s-wait" id="p4">Queued</span>
+          </div>
+          <div class="scan-row">
+            <div class="scan-icon">📈</div>
+            <div class="scan-label">SEO & Content Signals</div>
+            <span class="scan-status s-wait" id="p5">Queued</span>
+          </div>
+          <div class="scan-row">
+            <div class="scan-icon">📱</div>
+            <div class="scan-label">Mobile & Responsive Check</div>
+            <span class="scan-status s-wait" id="p3">Queued</span>
+          </div>
+          <div class="scan-row">
+            <div class="scan-icon">🎯</div>
+            <div class="scan-label">Conversion & Trust Heuristics</div>
+            <span class="scan-status s-wait" id="p6">Queued</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pbar-wrap">
+        <div class="pbar-meta">
+          <span id="pLabel">Analysing accessibility…</span>
+          <span id="pPct">22%</span>
+        </div>
+        <div class="pbar-track">
+          <div class="pbar-fill" id="pBar"></div>
+        </div>
+      </div>
+
+      <!-- BLOG CARDS — magazine style -->
+      <div class="blogs-wrap" id="blogsWrap" style="display:none">
+        <div class="blogs-label">While you wait — explore these</div>
+        <div class="blog-rail" id="blogRail">
+          <canvas id="cv1"></canvas>
+          <canvas id="cv2"></canvas>
+          <canvas id="cv3"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEP 4 ── -->
+    <div class="step-view" id="s4">
+      <div class="results-hero">
+        <div class="ring-wrap">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="8" />
+            <circle cx="45" cy="45" r="38" fill="none" stroke="#1BA43A" stroke-width="8"
+              stroke-dasharray="238.76104167282426" stroke-dashoffset="238.76104167282426" stroke-linecap="round"
+              id="ring" />
+          </svg>
+          <div class="ring-inner">
+            <div class="ring-num" id="ringNum">85</div>
+            <div class="ring-grade" id="ringGrade">A</div>
+          </div>
+        </div>
+        <div class="results-meta">
+          <h3 id="resultsHeading">Excellent Performance</h3>
+          <p id="resultsMessage">
+            Your site is performing well with opportunities to optimize further.
+          </p>
+          <div class="url-pill" id="urlPill">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+            </svg>
+            example.com
+          </div>
+        </div>
+      </div>
+
+      <div class="result-section">
+        <div class="sec-label">Score Breakdown</div>
+        <div id="scoreBreakdown"></div>
+      </div>
+
+      <div class="result-section">
+        <div class="metrics-grid" id="metricsGrid"></div>
+      </div>
+
+      <div class="result-section">
+        <div class="sec-label">Issues & Quick Wins</div>
+        <div id="issuesList"></div>
+      </div>
+
+      <div class="result-section" style="border-bottom: none">
+        <div class="sec-label">Prioritised Recommendations</div>
+        <div id="recommendations"></div>
+      </div>
+    </div>
+  </div>
+  <!-- /modal-body -->
+
+  <div class="modal-footer" id="mFooter">
+    <button class="btn-back" id="bBack" style="display: none">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M19 12H5M12 5l-7 7 7 7" />
+      </svg>
+      Back
+    </button>
+    <button class="btn-primary" id="bNext">
+      Continue
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--fountain)" stroke-width="2.5">
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
+    <span id="toastMsg">Done!</span>
+  </div>
+
+  <script src="audit.js"></script>
+</body>
+
+</html>

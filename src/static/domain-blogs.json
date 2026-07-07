@@ -1,0 +1,28 @@
+{
+  "zealousweb.com": {
+    "blogs": [
+      {
+        "title": "Revitalizing Digital Presence: Boosting Inquiries For Virtual Training Solutions",
+        "url": "https://www.zealousweb.com/case-studies/virtual-training-solutions-digital-revitalization-boosting-inquiries/",
+        "image": "https://d2dzxx87q66vi8.cloudfront.net/zealousweb/wp-content/uploads/2023/10/20144302/Disti-Banner.png",
+        "category": "Case Study",
+        "description": "Disti aimed to capture the attention of niche companies seeking virtual training solutions and HMI development tools."
+      },
+      {
+        "title": "From Chaos to Clarity: Streamlining AFC Furniture Solutions' Website Architecture",
+        "url": "https://www.zealousweb.com/case-studies/afc-furniture-website-architecture/",
+        "image": "https://d2dzxx87q66vi8.cloudfront.net/zealousweb/wp-content/uploads/2025/01/17163858/Featured-Banner-3.jpg",
+        "category": "Case Study",
+        "description": "AFC Furniture Solutions is renowned for its innovative designs and exceptional craftsmanship in the furniture industry."
+      },
+      {
+        "title": "Redesigned a Conversion-Focused Website for Higher Leads",
+        "url": "https://www.zealousweb.com/case-studies/medspabloom/",
+        "image": "https://d2dzxx87q66vi8.cloudfront.net/zealousweb/wp-content/uploads/2025/11/12162431/MedspBloom-1.png",
+        "category": "Case Study",
+        "description": "MedSpaBloom is a U.S.-based marketing agency dedicated to helping medical spas and aesthetic clinics expand their online presence."
+      }
+    ],
+    "contactUrl": "https://www.zealousweb.com/contact/"
+  }
+}
