@@ -7,6 +7,7 @@
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
+- [Preview](#-preview)
 - [Audit Modes](#-audit-modes)
 - [Architecture](#-architecture)
 - [Technology Stack](#-technology-stack)
@@ -22,7 +23,6 @@
 - [Environment Variables](#-environment-variables)
 - [Project Structure](#-project-structure)
 - [Development Practices](#-development-practices)
-- [Preview](#-preview)
 
 ---
 
