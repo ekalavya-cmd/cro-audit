@@ -1,3 +1,5 @@
+
+
 # CRO Audit Framework
 
 > A production-grade, AI-powered website audit engine that evaluates any public website for **Conversion Rate Optimization (CRO)** across three modes: **SEO**, **UX/UI**, and **Full**. Returns a scored, graded report with actionable quick wins — delivered in real-time via Socket.IO and optionally emailed to the requester.
@@ -793,6 +795,6 @@ This project is proprietary.
 
 ## 🎬 Preview
 
-> 📹 *Video preview coming soon — attach your demo recording below.*
+https://github.com/user-attachments/assets/91eff68e-605e-4445-8378-ad71310a24b8
 
-<!-- Add your video preview here -->
+
